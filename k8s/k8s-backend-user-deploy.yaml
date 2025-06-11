@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: k8s-backend-user
-          image: boogi0501/k8s-backend-user:0.0.1-SNAPSHOT
+          image: boogi0501/k8s-backend-user:0.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
