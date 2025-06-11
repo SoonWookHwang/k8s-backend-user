@@ -4,8 +4,12 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
+ext {
+    springCloudVersion = "2025.0.0"
+}
+
 group = 'com.welab'
-version = '0.0.2'
+version = '0.0.3'
 
 java {
     toolchain {
@@ -25,6 +29,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -38,6 +43,12 @@ tasks.named('test') {
 
 jar {
     enabled = false // plain.jar 생성 완전히 비활성화
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 tasks.register('getAppName') {
     doLast {
