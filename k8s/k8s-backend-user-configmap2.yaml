@@ -23,6 +23,6 @@ data:
         show-sql: true
         open-in-view: false
       kafka:
-        bootstrap-servers: 192.168.45.106:9092
+        bootstrap-servers: k8s-external-kafka-service:9092
 
 ## 볼륨 마운트 방식의 ConfigMap 등록 yaml
