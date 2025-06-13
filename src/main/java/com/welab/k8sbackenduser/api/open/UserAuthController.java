@@ -1,7 +1,9 @@
 package com.welab.k8sbackenduser.api.open;
 
 import com.welab.k8sbackenduser.common.dto.ApiResponseDto;
+import com.welab.k8sbackenduser.domain.dto.SiteUserLoginDto;
 import com.welab.k8sbackenduser.domain.dto.SiteUserRegisterDto;
+import com.welab.k8sbackenduser.secret.jwt.dto.TokenDto;
 import com.welab.k8sbackenduser.service.SiteUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +25,11 @@ public class UserAuthController {
     public ApiResponseDto<String> register(@RequestBody @Valid SiteUserRegisterDto registerDto) {
         siteUserService.registerUser(registerDto);
         return ApiResponseDto.defaultOk();
+    }
+
+    @PostMapping(value = "/login")
+    public ApiResponseDto<TokenDto.AccessRefreshToken> login(@RequestBody @Valid SiteUserLoginDto loginDto) {
+        TokenDto.AccessRefreshToken token = siteUserService.login(loginDto);
+        return ApiResponseDto.createOk(token);
     }
 }
