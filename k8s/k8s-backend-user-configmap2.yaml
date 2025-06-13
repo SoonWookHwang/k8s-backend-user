@@ -6,6 +6,7 @@ data:
   application-dev.yml: |
     server:
       port: 8080
+    
     spring:
       datasource:
         url: jdbc:mysql://k8s-external-user-mysql-service:3306/user?serverTimezone=UTC&useSSL=true&autoReconnect=true&useUnicode=true&characterEncoding=utf-8
@@ -22,6 +23,6 @@ data:
         show-sql: true
         open-in-view: false
       kafka:
-        bootstrap-servers: k8s-external-kafka-service:9092
+        bootstrap-servers: 192.168.45.106:9092
 
 ## 볼륨 마운트 방식의 ConfigMap 등록 yaml
