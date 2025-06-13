@@ -22,4 +22,10 @@ public class UserController {
         String userResponse = "웰컴 투 백엔드 유저. 리모트 알림 메시지= " + remoteMessage;
         return ApiResponseDto.createOk(userResponse);
     }
+
+    @GetMapping(value="/test")
+    public ApiResponseDto<String> test() {
+        String testMsg = "인증이 완료되어 test 메세지 출력";
+        return ApiResponseDto.createOk(testMsg);
+    }
 }

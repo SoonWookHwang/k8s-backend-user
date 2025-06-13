@@ -32,13 +32,16 @@ public class SiteUserService {
         SiteUserInfoEvent event = SiteUserInfoEvent.fromEntity("Create", siteUser);
         kafkaMessageProducer.send(SiteUserInfoEvent.Topic, event);
     }
+
     @Transactional(readOnly = true)
     public TokenDto.AccessRefreshToken login(SiteUserLoginDto loginDto) {
         SiteUser user = siteUserRepository.findByUserId(loginDto.getUserId());
         if (user == null) {
-            throw new NotFound("사용자를 찾을 수 없습니다.");
+            throw new BadParameter("아이디 또는 비밀번호를 확인하세요.");
         }
-        if( !SecureHashUtils.matches(loginDto.getPassword(), user.getPassword())){throw new BadParameter("비밀번호가 맞지 않습니다.");
+        if (!SecureHashUtils.matches(loginDto.getPassword(), user.getPassword())) {
+            throw new BadParameter("아이디 또는 비밀번호를 확인하세요.");
         }
-        return tokenGenerator.generateAccessRefreshToken(loginDto.getUserId(), "WEB");}
+        return tokenGenerator.generateAccessRefreshToken(loginDto.getUserId(), "WEB");
+    }
 }
