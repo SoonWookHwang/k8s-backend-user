@@ -9,10 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -32,4 +29,10 @@ public class UserAuthController {
         TokenDto.AccessRefreshToken token = siteUserService.login(loginDto);
         return ApiResponseDto.createOk(token);
     }
+
+    @GetMapping(value = "/test")
+    public ApiResponseDto<String> versionTest(){
+        return ApiResponseDto.createOk("버전 1입니다");
+    }
+
 }

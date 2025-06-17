@@ -9,7 +9,7 @@ ext {
 }
 
 group = 'com.welab'
-version = '0.0.9'
+version = '0.0.7'
 
 java {
     toolchain {
