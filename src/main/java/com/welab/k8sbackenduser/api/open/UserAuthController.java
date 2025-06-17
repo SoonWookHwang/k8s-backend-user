@@ -32,7 +32,7 @@ public class UserAuthController {
 
     @GetMapping(value = "/test")
     public ApiResponseDto<String> versionTest(){
-        return ApiResponseDto.createOk("버전 2입니다");
+        return ApiResponseDto.createOk("카나리 버전입니다.");
     }
 
 }
